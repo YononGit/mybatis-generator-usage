@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smy.ccs.dao.BusinessProcessDataMonitorDao" >
+  <resultMap id="BaseResultMap" type="com.smy.bss.domain.BusinessProcessDataMonitor" >
+    <id column="MONITOR_DATE" property="monitorDate" jdbcType="INTEGER" />
+    <id column="MONITOR_PERIOD" property="monitorPeriod" jdbcType="CHAR" />
+    <id column="CAP_CODE" property="capCode" jdbcType="CHAR" />
+    <result column="LAST_DATA_DATETIME" property="lastDataDatetime" jdbcType="TIMESTAMP" />
+    <result column="SUCCESS_NUM" property="successNum" jdbcType="INTEGER" />
+    <result column="FAILED_NUM" property="failedNum" jdbcType="INTEGER" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATE_DATETIME" property="createDatetime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATETIME" property="updateDatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    MONITOR_DATE, MONITOR_PERIOD, CAP_CODE, LAST_DATA_DATETIME, SUCCESS_NUM, FAILED_NUM, 
+    REMARK, CREATE_DATETIME, UPDATE_DATETIME
+  </sql>
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="com.smy.bss.domain.BusinessProcessDataMonitorCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from business_process_data_monitor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart >= 0" >
+      limit ${limitStart},${pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.smy.bss.domain.BusinessProcessDataMonitorKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from business_process_data_monitor
+    where MONITOR_DATE = #{monitorDate,jdbcType=INTEGER}
+      and MONITOR_PERIOD = #{monitorPeriod,jdbcType=CHAR}
+      and CAP_CODE = #{capCode,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.smy.bss.domain.BusinessProcessDataMonitorKey" >
+    delete from business_process_data_monitor
+    where MONITOR_DATE = #{monitorDate,jdbcType=INTEGER}
+      and MONITOR_PERIOD = #{monitorPeriod,jdbcType=CHAR}
+      and CAP_CODE = #{capCode,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByCriteria" parameterType="com.smy.bss.domain.BusinessProcessDataMonitorCriteria" >
+    delete from business_process_data_monitor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.smy.bss.domain.BusinessProcessDataMonitor" >
+    insert into business_process_data_monitor (MONITOR_DATE, MONITOR_PERIOD, CAP_CODE, 
+      LAST_DATA_DATETIME, SUCCESS_NUM, FAILED_NUM, 
+      REMARK, CREATE_DATETIME, UPDATE_DATETIME
+      )
+    values (#{monitorDate,jdbcType=INTEGER}, #{monitorPeriod,jdbcType=CHAR}, #{capCode,jdbcType=CHAR}, 
+      #{lastDataDatetime,jdbcType=TIMESTAMP}, #{successNum,jdbcType=INTEGER}, #{failedNum,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{createDatetime,jdbcType=TIMESTAMP}, #{updateDatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.smy.bss.domain.BusinessProcessDataMonitor" >
+    insert into business_process_data_monitor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="monitorDate != null" >
+        MONITOR_DATE,
+      </if>
+      <if test="monitorPeriod != null" >
+        MONITOR_PERIOD,
+      </if>
+      <if test="capCode != null" >
+        CAP_CODE,
+      </if>
+      <if test="lastDataDatetime != null" >
+        LAST_DATA_DATETIME,
+      </if>
+      <if test="successNum != null" >
+        SUCCESS_NUM,
+      </if>
+      <if test="failedNum != null" >
+        FAILED_NUM,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createDatetime != null" >
+        CREATE_DATETIME,
+      </if>
+      <if test="updateDatetime != null" >
+        UPDATE_DATETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="monitorDate != null" >
+        #{monitorDate,jdbcType=INTEGER},
+      </if>
+      <if test="monitorPeriod != null" >
+        #{monitorPeriod,jdbcType=CHAR},
+      </if>
+      <if test="capCode != null" >
+        #{capCode,jdbcType=CHAR},
+      </if>
+      <if test="lastDataDatetime != null" >
+        #{lastDataDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="successNum != null" >
+        #{successNum,jdbcType=INTEGER},
+      </if>
+      <if test="failedNum != null" >
+        #{failedNum,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDatetime != null" >
+        #{createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDatetime != null" >
+        #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByCriteria" parameterType="com.smy.bss.domain.BusinessProcessDataMonitorCriteria" resultType="java.lang.Integer" >
+    select count(1) from business_process_data_monitor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByCriteriaSelective" parameterType="map" >
+    update business_process_data_monitor
+    <set >
+      <if test="record.monitorDate != null" >
+        MONITOR_DATE = #{record.monitorDate,jdbcType=INTEGER},
+      </if>
+      <if test="record.monitorPeriod != null" >
+        MONITOR_PERIOD = #{record.monitorPeriod,jdbcType=CHAR},
+      </if>
+      <if test="record.capCode != null" >
+        CAP_CODE = #{record.capCode,jdbcType=CHAR},
+      </if>
+      <if test="record.lastDataDatetime != null" >
+        LAST_DATA_DATETIME = #{record.lastDataDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.successNum != null" >
+        SUCCESS_NUM = #{record.successNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.failedNum != null" >
+        FAILED_NUM = #{record.failedNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDatetime != null" >
+        CREATE_DATETIME = #{record.createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateDatetime != null" >
+        UPDATE_DATETIME = #{record.updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByCriteria" parameterType="map" >
+    update business_process_data_monitor
+    set MONITOR_DATE = #{record.monitorDate,jdbcType=INTEGER},
+      MONITOR_PERIOD = #{record.monitorPeriod,jdbcType=CHAR},
+      CAP_CODE = #{record.capCode,jdbcType=CHAR},
+      LAST_DATA_DATETIME = #{record.lastDataDatetime,jdbcType=TIMESTAMP},
+      SUCCESS_NUM = #{record.successNum,jdbcType=INTEGER},
+      FAILED_NUM = #{record.failedNum,jdbcType=INTEGER},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      CREATE_DATETIME = #{record.createDatetime,jdbcType=TIMESTAMP},
+      UPDATE_DATETIME = #{record.updateDatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smy.bss.domain.BusinessProcessDataMonitor" >
+    update business_process_data_monitor
+    <set >
+      <if test="lastDataDatetime != null" >
+        LAST_DATA_DATETIME = #{lastDataDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="successNum != null" >
+        SUCCESS_NUM = #{successNum,jdbcType=INTEGER},
+      </if>
+      <if test="failedNum != null" >
+        FAILED_NUM = #{failedNum,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDatetime != null" >
+        CREATE_DATETIME = #{createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDatetime != null" >
+        UPDATE_DATETIME = #{updateDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where MONITOR_DATE = #{monitorDate,jdbcType=INTEGER}
+      and MONITOR_PERIOD = #{monitorPeriod,jdbcType=CHAR}
+      and CAP_CODE = #{capCode,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smy.bss.domain.BusinessProcessDataMonitor" >
+    update business_process_data_monitor
+    set LAST_DATA_DATETIME = #{lastDataDatetime,jdbcType=TIMESTAMP},
+      SUCCESS_NUM = #{successNum,jdbcType=INTEGER},
+      FAILED_NUM = #{failedNum,jdbcType=INTEGER},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_DATETIME = #{createDatetime,jdbcType=TIMESTAMP},
+      UPDATE_DATETIME = #{updateDatetime,jdbcType=TIMESTAMP}
+    where MONITOR_DATE = #{monitorDate,jdbcType=INTEGER}
+      and MONITOR_PERIOD = #{monitorPeriod,jdbcType=CHAR}
+      and CAP_CODE = #{capCode,jdbcType=CHAR}
+  </update>
+</mapper>

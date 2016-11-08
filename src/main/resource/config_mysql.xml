@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!--<classPathEntry location="d:\workspace\mybatis-generator-usage\lib\ojdbc14-10.2.0.3.0.jar"
+		/> -->
+	<classPathEntry
+		location="D:\Yonon\WorkSpace\mybatis-generator-usage\lib\mysql-connector-java-5.1.6-bin.jar" />
+
+	<context id="OracleTables" targetRuntime="MyBatis3">
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="Example$" />
+			<property name="replaceString" value="Criteria" />
+		</plugin>
+		<plugin type="com.smy.plugin.MySQLPaginationPlugin"></plugin>
+		<plugin type="com.smy.plugin.RenameExampleMethodPlugin"></plugin>
+		<plugin type="com.smy.plugin.ModelFieldCustomizePlugin"></plugin>
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+		<!-- <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin> -->
+
+
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.2.234:3306/bda"
+			userId="dm_bda" password="sit@bda"> -->
+		<!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.2.221:3306/sun"
+			userId="dm_sun" password="smy@sun"> -->
+		<!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.2.221:3306/rpt"
+			userId="dm_rpt" password="rptdev"> -->
+		<!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.2.221:3306/cbs"
+			userId="dm_cbs" password="cbs@dev"> -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://192.168.2.234:3306/smy" userId="dm_ccs"
+			password="ccs@sit">
+			<!-- <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@10.75.10.17:1521:ORCL"
+				userId="ctsapp" password="ctsapp"> -->
+			<!-- connectionURL="jdbc:oracle:thin:@99.6.79.185:1521:ORCL" userId="vCredit"
+				password="vCredit"> 99.8.59.7:1521:ORCL -->
+			<property name="remarks" value="true" />
+		</jdbcConnection>
+
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.smy.bss.domain"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<!-- <property name="trimStrings" value="true" /> -->
+<!-- 			<property name="rootClass" value="com.smy.framework.base.BaseEntity" /> -->
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="mapper" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- <table tableName="trx_apply_info" /> <table tableName="trx_task_info"
+			/> <table tableName="trx_limit_info" /> -->
+		<!-- <table tableName="DNA_KEY_WORD" /> -->
+		<!-- <table tableName="AMS_VISIT_PAGE_TIMELENGTH" /> -->
+		<!-- <table tableName="RPT_PRD_PRIDICT_MON_INCOME" /> -->
+		<!-- <table tableName="rpt_prd_usr_reg_interval" /> <table tableName="rpt_prd_total_asset"
+			/> <table tableName="rpt_prd_subprime_diversion" /> -->
+		<!-- <table tableName="DIVER_PLATFORM_INFO" /> -->
+		<!-- <table tableName="DIVER_PLATFORM_DATA_REQ" /> -->
+		<!-- <table tableName="DIVER_CUST_STATE_INFO" /> -->
+		<!-- <table tableName="DIVER_CUST_DATA_REC" /> -->
+		<!-- <table tableName="DIVER_CUST_TRANS_REC" /> -->
+		<!-- <table tableName="DIVER_DATA_PACK_CONFIG" /> -->
+		<!-- <table tableName="DIVER_DATA_FEE_RULE" /> -->
+		<!-- <table tableName="DCP_CUST_INFO_IMG" /> -->
+		<!-- <table tableName="DCP_CUST_INFO_COMPANY" /> -->
+		<!-- <table tableName="DIVER_PLATFORM_FEE_RLS" /> -->
+<!-- 		<table tableName="com_card_activity_type" /> -->
+<!-- 		<table tableName="com_hot_activity" /> -->
+			<table tableName="business_process_data_monitor" />
+
+		<!-- <table tableName="cdt_card_bill_check_result" /> <table tableName="cdt_card_bill_check_rule"
+			/> <table tableName="CDT_CARD_BILL_CRAWL_SUMMARY" /> <table tableName="cdt_card_bill_crawl_detail"
+			/> <table tableName="cdt_card_bank_login_info" /> <table tableName="cdt_card_bill_check_detail"
+			/> <table tableName="CDT_CARD_BILL_CHECK_RANK" /> <table tableName="cdt_card_ext_bank_rls"
+			/> -->
+
+
+		<!-- <table tableName="cdt_card_bill_info" /> <table tableName="cdt_card_repay_date_rule"
+			/> <table tableName="para_ge" /> -->
+		<!-- <table tableName="BLL_BLACKLIST_INFO" /> <table tableName="SYS_RISK_VALUE"
+			/> <table tableName="SYS_SCHOOL_BANK" /> <table tableName="TRX_ABNORMAL_INFO_RISK_TIP"
+			/> <table tableName="TRX_APPLY_RESULT_RISK_TIP" /> <table tableName="TRX_PERSONEL_RISK_TIP"
+			/> <table tableName="TRX_SCHOOL_RISK_TIP" /> -->
+
+
+
+
+
+
+
+
+
+		<!-- <table tableName="TRX_LIMIT_INFO" /> <table tableName="TRX_SURVEY_REPORT"
+			/> <table tableName="TRX_TASK_INFO" /> <table tableName="SYS_SCHOOL_CODE"
+			/> <table tableName="SYS_AREA_CODE" /> <table tableName="SYS_MAJOR_CODE"
+			/> <table tableName="TRX_APPLY_INFO" /> <table tableName="TRX_OPERATE_LOG"
+			/> -->
+
+	</context>
+</generatorConfiguration>
